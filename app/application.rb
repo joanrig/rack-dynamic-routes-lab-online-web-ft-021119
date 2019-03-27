@@ -5,6 +5,10 @@ class Application
     req = Rack::Request.new(env)
 
     if req.path.match(/items/)
+      item = req.path.split("/items/").last #turn path into item name
+      item = @@items.find{|item| item.name == item}
+
+
       search_term = req.params["item"]
 
       if @@items.include?(search_term)
