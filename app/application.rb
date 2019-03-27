@@ -10,14 +10,12 @@ class Application
         resp.write "#{search_term.price}"
       else
         resp.write "Route not found"
-  end
-
-    if req.path.match(/items/)
-      if @@items.include?(search_term)
-        resp.write "#{search_term} is one of our items"
-      else
-        resp.write "Couldn't find #{search_term}"
+        resp.status = 404
       end
+    else
+      esp.write "Route not found"
+      resp.status = 404
+    end
     resp.finish
   end
 
