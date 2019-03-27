@@ -6,12 +6,7 @@ class Application
 
     if req.path.match(/items/)
       item = req.path.split("/items/").last #turn path into item name
-      item = @@items.find{|item| item.name == item}
-
-
-      search_term = req.params["item"]
-
-      if @@items.include?(search_term)
+      if @@items.include?(item)
         resp.write "#{search_term.price}"
       else
         resp.write "Item not found"
